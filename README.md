@@ -1,3 +1,7 @@
+
+https://voltpak.github.io/webcore-9.6/
+
+
 # Webpack Static Site Starter Kit
 
 ## Project Requirements
