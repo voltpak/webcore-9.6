@@ -18,6 +18,10 @@
     box-shadow: 16px 0px 52px 0px rgba(14, 24, 80, 0.2);
   }
 
+  @media (min-width: $breakpoint-tablet) {
+    width: 320px;
+  }
+
   @media (min-width: $breakpoint-desktop) {
     width: 320px;
     transform: translateX(0);
