@@ -1,0 +1,12 @@
+@mixin declare-font($font-family, $font-filename, $font-weight) {
+  @font-face {
+    font-family: $font-family;
+    src: url('../fonts/#{$font-filename}.woff') format('opentype');
+    font-weight: $font-weight;
+    font-style: normal;
+  }
+}
+
+@include declare-font("TTLakes", "TTLakes-Regular", 400);
+@include declare-font("TTLakes", "TTLakes-Medium", 500);
+@include declare-font("TTLakes", "TTLakes-Bold", 700);

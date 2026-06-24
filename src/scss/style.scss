@@ -1,17 +1,258 @@
-$bgColor: #24292e;
-$text: #fff;
+@import "~swiper/css";
+@import "~swiper/css/pagination";
 
-@font-face {
-  font-family: 'Comic';
-  src: url('../fonts/comic.ttf') format('truetype');
-  font-weight: normal;
-  font-style: italic;
+@import "variables";
+@import "fonts";
+@import "sidebar";
+@import "header";
+@import "main-content";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "TTLakes", sans-serif;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 999;
+
+  &--active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    display: none;
+  }
 }
 
 body {
-  padding: 1rem;
-  margin: 0;
-  font-family: Comic, sans-serif;
-  background-color: $bgColor;
-  color: $text;
+  background-color: $color-bg-main;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .table-wrapper {
+    display: none;
+  }
+
+  .price-slider-swiper {
+    display: block;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .price-slider__card {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 290px;
+    height: auto;
+    position: relative;
+    background-color: $color-bg-white;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    box-sizing: border-box;
+
+    .card-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    .card-label {
+      font-family: inherit;
+      font-size: 13px;
+      color: $color-text-muted;
+      margin-bottom: 4px;
+    }
+
+    .card-value {
+      font-family: inherit;
+      font-size: 15px;
+      color: $color-text-primary;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .card-btn {
+      display: inline-flex;
+      align-items: center;
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      background-color: #ff3e79;
+      color: $color-bg-white;
+      border-radius: 25px;
+      border: none;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      gap: 8px;
+      cursor: pointer;
+      transition: opacity 0,2 ease;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      &::after {
+        content: "›";
+        font-size: 18px;
+        line-height: 1;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .third-swiper-pagination.swiper-pagination {
+    bottom: 10px;
+
+    .swiper-pagination-bullet {
+      background: #cccccc;
+      opacity: 1;
+      width: 8px;
+      height: 8px;
+      margin: 0 5px;
+      transition: background-color 0.3s ease;
+
+      &-active {
+        background: #ff3e79;
+      }   
+    }
+  }  
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .page-heading { padding: 32px 32px 20px 32px; }
+
+  .service-grid-container {
+    &__grid {
+      max-height: 160px; 
+
+      &--expanded {
+        max-height: 1000px;
+      }
+    }
+  }
+
+  .content-block {
+    flex-direction: row;
+    padding: 0 32px 32px 32px;
+    
+    &__text-wrapper, &__banner { flex: 1; }
+  }
+
+  .brands-slider, .service-slider { 
+    display: none; 
+  }
+  .brands-grid-container, .service-grid-container { 
+    display: block; 
+  }
+
+  .price-slider {
+    display: none;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+
+    body {
+    flex-direction: row;
+    max-width: 1440px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+  }
+
+  .main-content {
+    max-width: 1120px;
+    width: 100%;
+  }
+
+  .page-heading {
+    padding: 40px 32px 0 32px;
+    
+    &__icons {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    &__btn-text {
+      font-weight: 500;
+      color: $color-text-primary; 
+      cursor: pointer;
+    }
+  }
+
+  .content-block {
+    max-width: 1440px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 36px;
+
+    &__text-wrapper { 
+      flex: 0 1 540px; 
+      width: 100%;
+    }
+    
+    &__text-paragraph--desktop { 
+      display: inline; 
+    }
+    
+    &__banner { 
+      flex: 0 1 540px; 
+      width: 100%;
+      display: flex;
+      justify-content: flex-end; 
+    }
+  }
+
+  .brands-grid-container {
+    &__grid {
+      grid-template-columns: repeat(4, 1fr);
+      max-height: 160px;
+      
+      &--expanded { 
+        max-height: 400px; 
+      }
+    }
+  }
+
+  .service-grid-container {
+    &__grid {
+      grid-template-columns: repeat(4, 1fr);
+      max-height: 160px;
+      
+      &--expanded { 
+        max-height: 800px; 
+      }
+    }
+  }
+
+  .price-slider {
+    display: none;
+  }
 }

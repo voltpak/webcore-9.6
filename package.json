@@ -13,6 +13,8 @@
   "author": "Habsida",
   "main": "index.js",
   "scripts": {
+    "build-css": "sass style.scss style.css",
+    "watch-css": "sass --watch style.scss:style.css",
     "build": "webpack --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
@@ -53,5 +55,8 @@
     "plugins": {
       "autoprefixer": {}
     }
+  },
+  "dependencies": {
+    "swiper": "^12.2.0"
   }
 }
