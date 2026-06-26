@@ -1,5 +1,8 @@
 import '../scss/style.scss';
 import Swiper from 'swiper';
+import { Pagination } from 'swiper/modules'
+
+Swiper.use([Pagination])
 
 console.log('It works!');
 
